@@ -8,6 +8,7 @@ import dash_html_components as html
 import dash_bootstrap_components as dbc
 import plotly.io as plt_io
 app = dash.Dash(__name__, title="Netflix Data Visualisation", external_stylesheets=[dbc.themes.GRID])
+server=app.server
 
 
 #Creating template for Dark Theme
