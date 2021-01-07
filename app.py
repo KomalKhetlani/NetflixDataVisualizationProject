@@ -103,34 +103,6 @@ dfc1=dfc1.dropna()
 dfc1=dfc1.drop([27])
 
 
-#Top Actor
-dfA=dff[['cast','country']]
-dfA=dfA.dropna()
-dfA1=dfA[dfA['country'].str.contains('Samoa',case=False)]
-dfA2=dfA1['cast'].str.split(',',expand=True).stack()
-dfA2=dfA2.to_frame()
-dfA2.columns=['Cast']
-dfA3=dfA2.groupby(['Cast']).size().reset_index(name='counts')
-dfA3=dfA3[dfA3['Cast'] !='No Cast Specified']
-dfA3=dfA3.sort_values(by='counts',ascending=False)
-if dfA3.empty:
-    z = "Actor data from this country is not available"
-else:
-    z=dfA3.iloc[0]['Cast']
-
-
-#Top Director
-dfD=dff[['director', 'country']]
-dfD=dfD.dropna()
-dfD1=dfD[dfD['country'].str.contains('India',case=False)]
-dfD2=dfD1['director'].str.split(',',expand=True).stack()
-dfD2=dfD2.to_frame()
-dfD2.columns=['Director']
-dfD3=dfD2.groupby(['Director']).size().reset_index(name='counts')
-dfD3=dfD3[dfD3['Director'] !='No Director Specified']
-dfD3=dfD3.sort_values(by='counts',ascending=False)
-z1=dfD3.iloc[0]['Director']
-
 
 
 app.layout = html.Div(children=[
