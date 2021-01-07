@@ -90,9 +90,9 @@ fig5 = px.bar(dfx, x="Release Year", y="Total Content", color="Sentiment", title
 fig5.layout.template = 'custom_dark'
 
 
-#Movie Statistics Calculator
-
-#Finding the list of countries
+# #Movie Statistics Calculator
+#
+# #Finding the list of countries
 dfc=dff[['country']]
 dfc=dfc.dropna()
 dfc1=dfc['country'].str.split(',',expand=True).stack()
@@ -102,34 +102,6 @@ dfc1=dfc1[dfc1!=" "]
 dfc1=dfc1.dropna()
 dfc1=dfc1.drop([27])
 
-# Number of content produced
-dfx = dff[['type', 'country']]
-dfMovie = dfx[dfx['type'] == 'Movie']
-dfTV = dfx[dfx['type'] == 'TV Show']
-dfM1 = dfMovie['country'].str.split(',', expand=True).stack()
-dfTV1 = dfTV['country'].str.split(',', expand=True).stack()
-dfM1 = dfM1.to_frame()
-dfTV1 = dfTV1.to_frame()
-dfM1.columns = ['country']
-dfTV1.columns = ['country']
-dfM2 = dfM1.groupby(['country']).size().reset_index(name='counts')
-dfTV2 = dfTV1.groupby(['country']).size().reset_index(name='counts')
-dfM2['country']=dfM2['country'].str.strip()
-dfTV2['country']=dfTV2['country'].str.strip()
-val11 = dfM2[dfM2['country'] == 'Albania']
-val22 = dfTV2[dfTV2['country'] == 'Albania']
-val11 = val11.reset_index()
-val22=val22.reset_index()
-
-if val11.empty:
-    val1=0
-else:
-    val1 = val11.loc[0]['counts']
-
-if val22.empty:
-    val2=0
-else:
-    val2 = val22.loc[0]['counts']
 
 #Top Actor
 dfA=dff[['cast','country']]
